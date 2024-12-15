@@ -1,13 +1,11 @@
-
-
 import React from 'react'
+import { Logo_Url } from '../utility/constant';
 
 const Header = props => {
   return (
     <div className='flex justify-between items-center px-2 shadow-md'>
       <div className='w-20 p-2'>
-        <img src="https://img.freepik.com/premium-vector/logo-food-company-that-says-
-        sun-sun-sunflower_917213-253424.jpg?semt=ais_hybrid" alt='logo'/>
+        <img src={Logo_Url} alt='logo'/>
       </div>
       <div className='flex pr-4'>
         <ul className='flex gap-4 p-2'>
