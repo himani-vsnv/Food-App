@@ -13,6 +13,7 @@ const Header = props => {
             <li>About</li>
             <li>Contact</li>
             <li>Cart</li>
+            <button >Login</button>
         </ul>
       </div>
     </div>
