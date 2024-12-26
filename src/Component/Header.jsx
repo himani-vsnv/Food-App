@@ -1,5 +1,6 @@
 import React from 'react'
 import { Logo_Url } from '../utility/constant';
+import { Link } from 'react-router-dom';
 
 const Header = props => {
   return (
@@ -9,10 +10,10 @@ const Header = props => {
       </div>
       <div className='flex pr-4'>
         <ul className='flex gap-4 p-2'>
-            <li>Home</li>
-            <li>About</li>
-            <li>Contact</li>
-            <li>Cart</li>
+            <Link to='/'>Home</Link>
+            <Link to='/about'>About</Link>
+            <Link to='/contact'>Contact</Link>
+            <Link to=''>Cart</Link>
             <button >Login</button>
         </ul>
       </div>

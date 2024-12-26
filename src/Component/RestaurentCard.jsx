@@ -1,31 +1,22 @@
-import React, { useEffect, useState } from 'react'
-import ShimmerUi from './ShimmerUi';
+/* eslint-disable jsx-a11y/img-redundant-alt */
+import React from 'react'
 
-const RestaurentCard = () => {
-  const [listRest, setListRest] = useState([])
-  useEffect(() => {
-    fetchData()
-  },[])
-  const fetchData = async () => {
-    const resp =await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.99740&lng=79.00110&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
-    if (!resp.ok) {
-        throw new Error(`Response status: ${resp.status}`);
-      }
-    const jsonData = await resp.json();
-    console.log(jsonData.data.cards[0].card.card.imageGridCards.info
-    )
-    setListRest(jsonData.data.cards[0].card.card.imageGridCards.info
-    )
-  }
-  if(listRest === 0){
-    return <ShimmerUi/>
-  }
+const RestaurentCard = ({listRest}) => {
+  
+  const imageData = "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/"
 return(
-    <div>
-      {listRest.map((item, index) => {
+    <div className='flex gap-4 '>
+      {listRest.map((items) => {
+        const item = items.info;
+        const dataImg = `${imageData}${item.cloudinaryImageId}`
+        console.log(dataImg)
         return (
-         <div key={index}>
-            <h1>{item.id}</h1>
+         <div key={item.id} className='w-full bg-white border-2 shadow-lg flex flex-col gap-1 p-2 rounded'>
+              <img className="w-30 h-40 " src={dataImg}
+              alt='food image'/>
+              <h1 className='text-wrap'>{item.name}</h1>
+              <h1>{item.avgRating}</h1>
+              <h1>{item.costForTwo}</h1>
          </div>
         );
       })}
