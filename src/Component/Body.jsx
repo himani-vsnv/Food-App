@@ -4,6 +4,8 @@ import ShimmerUi from "./ShimmerUi";
 
 const Body = () => {
     const [listRest, setListRest] = useState([])
+    const [search, setSearch] = useState("")
+    console.log("search",search)
   useEffect(() => {
     fetchData()
   },[])
@@ -21,20 +23,20 @@ const Body = () => {
     return <ShimmerUi/>
   }
   const handleFiltered = () => {
-    console.log("clicked")
     const filterData = listRest.filter((rest) => rest.info.avgRating >= 4.2)
-    console.log(filterData)
     setListRest(filterData)
   }
   const handleSearched = () => {
-
+    const searchData = listRest.filter((rest) => listRest.info.name.include(search))
+    console.log("searchData",searchData)
+    setListRest(searchData)
   }  
 
   return (
         <div className="">
            <div className="flex gap-2 p-4">
               <div>
-              <input placeholder="search" className="p-2 border"/>
+              <input type="text" value={search} placeholder="search" onChange={(e) => setSearch(e.target.value)} className="p-2 border"/>
                   <button onClick={() => handleSearched()} className="p-2 bg-slate-400 rounded">search</button>
               </div>
               <div>
