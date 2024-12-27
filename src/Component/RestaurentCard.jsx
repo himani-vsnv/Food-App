@@ -6,10 +6,9 @@ const RestaurentCard = ({listRest}) => {
   const imageData = "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/"
 return(
     <div className='flex gap-4 '>
-      {listRest.map((items) => {
+      {listRest?.map((items) => {
         const item = items.info;
         const dataImg = `${imageData}${item.cloudinaryImageId}`
-        console.log(dataImg)
         return (
          <div key={item.id} className='w-full bg-white border-2 shadow-lg flex flex-col gap-1 p-2 rounded'>
               <img className="w-30 h-40 " src={dataImg}
