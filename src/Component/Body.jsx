@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import RestaurentCard from "./RestaurentCard";
 import ShimmerUi from "./ShimmerUi";
+import { Api_Url } from "../utility/constant";
 
 const Body = () => {
     const [listRest, setListRest] = useState([])
@@ -10,7 +11,7 @@ const Body = () => {
     fetchData()
   },[])
   const fetchData = async () => {
-    const resp =await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.99740&lng=79.00110&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
+    const resp =await fetch(Api_Url)
     if (!resp.ok) {
         throw new Error(`Response status: ${resp.status}`);
       }

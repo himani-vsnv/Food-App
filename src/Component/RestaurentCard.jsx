@@ -1,9 +1,10 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React from 'react'
+import { Image_Id } from '../utility/constant';
 
 const RestaurentCard = ({listRest}) => {
+  const imageData = Image_Id;
   
-  const imageData = "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/"
 return(
     <div className='flex gap-4 '>
       {listRest?.map((items) => {

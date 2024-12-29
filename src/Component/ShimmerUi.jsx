@@ -17,7 +17,6 @@ const ShimmerUi = () => {
         <div className='bg-[#f3f3f3] w-[210px] h-[300px] border-2 shadow-lg rounded'></div>
         <div className='bg-[#f3f3f3] w-[210px] h-[300px] border-2 shadow-lg rounded'></div>
       </div>
-
     </div>
   )
 }
