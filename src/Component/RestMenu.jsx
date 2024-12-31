@@ -1,7 +1,7 @@
 const RestMenu = () => {
     return(
         <div>
-         Redtaurent Menu
+         Restaurent Menu
         </div>
     );
 };
