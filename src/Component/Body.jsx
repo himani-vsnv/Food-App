@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react"
 import RestaurentCard from "./RestaurentCard";
 import ShimmerUi from "./ShimmerUi";
 import { Api_Url } from "../utility/constant";
-import { Link } from "react-router-dom";
 
 const Body = () => {
     const [listRest, setListRest] = useState([])
@@ -19,7 +18,7 @@ const Body = () => {
     const jsonData = await resp.json();
     const dataOfRest = jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
     setListRest(dataOfRest)
-    console.log(jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+    console.log(jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants[0].info.id)
   }
   if(listRest === 0){
     return <ShimmerUi/>
@@ -34,7 +33,7 @@ const Body = () => {
     console.log("search",search)
     setListRest(searchData)
   }  
-
+  
   return (
         <div className="">
            <div className="flex gap-2 p-4">
@@ -47,9 +46,14 @@ const Body = () => {
               </div>
            </div>
             <div >
-               <Link to="/restMenu">
+              {/* {listRest.map((rest )=> 
+                 <Link to={`/restMenu/${rest.info.id}`}>
+                 <RestaurentCard listRest={rest} /> 
+                </Link>
+              )} */}
+               
                 <RestaurentCard listRest={listRest} /> 
-               </Link>
+               
             </div>
         </div>
     )

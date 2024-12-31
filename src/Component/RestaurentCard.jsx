@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React from 'react'
 import { Image_Id } from '../utility/constant';
+import { Link } from 'react-router-dom';
 
 const RestaurentCard = ({listRest}) => {
   const imageData = Image_Id;
@@ -17,6 +18,7 @@ return(
               <h1 className='text-wrap'>{item.name}</h1>
               <h1>{item.avgRating}</h1>
               <h1>{item.costForTwo}</h1>
+              <Link to={`/restMenu/${item.id}`}>moreInfo</Link>
          </div>
         );
       })}
