@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import RestaurentCard from "./RestaurentCard";
 import ShimmerUi from "./ShimmerUi";
 import { Api_Url } from "../utility/constant";
+import { Link } from "react-router-dom";
 
 const Body = () => {
     const [listRest, setListRest] = useState([])
@@ -28,8 +29,9 @@ const Body = () => {
     setListRest(filterData)
   }
   const handleSearched = () => {
-    const searchData = listRest.filter((rest) => listRest.info.name.include(search))
+    const searchData = listRest.filter((rest) => rest.info.name === search)
     console.log("searchData",searchData)
+    console.log("search",search)
     setListRest(searchData)
   }  
 
@@ -37,7 +39,7 @@ const Body = () => {
         <div className="">
            <div className="flex gap-2 p-4">
               <div>
-              <input type="text" value={search} placeholder="search" onChange={(e) => setSearch(e.target.value)} className="p-2 border"/>
+              <input type="text" value={search} placeholder="search..." name="search" onChange={(e) => setSearch(e.target.value)} className="p-2 border"/>
                   <button onClick={() => handleSearched()} className="p-2 bg-slate-400 rounded">search</button>
               </div>
               <div>
@@ -45,7 +47,9 @@ const Body = () => {
               </div>
            </div>
             <div >
-               <RestaurentCard listRest={listRest} /> 
+               <Link to="/restMenu">
+                <RestaurentCard listRest={listRest} /> 
+               </Link>
             </div>
         </div>
     )
