@@ -30,13 +30,10 @@ const RestMenu = () => {
          <hr/>
          {itemMenu?.map((items) =>
         <div key={items.card.info.id} className="flex gap-2">
-            
             <p>{items.card.info.name}</p>
             <p>{items.card.info.category}</p>
             <p>Rs- {(items.card.info.defaultPrice)/100 || (items.card.info.price)/100}</p>
-            
         </div>
-         
     )}
         </div>
     );

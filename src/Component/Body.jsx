@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react"
 import RestaurentCard from "./RestaurentCard";
 import ShimmerUi from "./ShimmerUi";
 import { Api_Url } from "../utility/constant";
+import { Link } from "react-router-dom";
 
 const Body = () => {
     const [listRest, setListRest] = useState([])
     const [search, setSearch] = useState("")
+    const [filterList, setFilterList] = useState([])
     console.log("search",search)
   useEffect(() => {
     fetchData()
@@ -18,6 +20,7 @@ const Body = () => {
     const jsonData = await resp.json();
     const dataOfRest = jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
     setListRest(dataOfRest)
+    setFilterList(dataOfRest)
     console.log(jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants[0].info.id)
   }
   if(listRest === 0){
@@ -28,12 +31,14 @@ const Body = () => {
     setListRest(filterData)
   }
   const handleSearched = () => {
-    const searchData = listRest.filter((rest) => rest.info.name === search)
+    const searchData = filterList.filter((rest) => rest.info.name.toLowerCase().includes(search.toLowerCase())
+  );
     console.log("searchData",searchData)
     console.log("search",search)
     setListRest(searchData)
+    setSearch("");
   }  
-  
+
   return (
         <div className="">
            <div className="flex gap-2 p-4">
@@ -45,16 +50,13 @@ const Body = () => {
                   <button onClick={handleFiltered} className="p-2 bg-violet-500 rounded">High Rate</button>
               </div>
            </div>
-            <div >
-              {/* {listRest.map((rest )=> 
-                 <Link to={`/restMenu/${rest.info.id}`}>
-                 <RestaurentCard listRest={rest} /> 
-                </Link>
-              )} */}
-               
-                <RestaurentCard listRest={listRest} /> 
-               
-            </div>
+            <div className="flex flex-wrap gap-4">
+        {listRest.map((rest) => (
+          <Link key={rest.info.id} to={`/restMenu/${rest.info.id}`}>
+            <RestaurentCard item={rest.info} />
+          </Link>
+        ))}
+      </div>
         </div>
     )
 }

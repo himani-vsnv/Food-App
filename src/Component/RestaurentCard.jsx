@@ -1,28 +1,18 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React from 'react'
 import { Image_Id } from '../utility/constant';
-import { Link } from 'react-router-dom';
 
-const RestaurentCard = ({listRest}) => {
-  const imageData = Image_Id;
-  
-return(
-    <div className='flex gap-4 '>
-      {listRest?.map((items) => {
-        const item = items.info;
-        const dataImg = `${imageData}${item.cloudinaryImageId}`
-        return (
-         <div key={item.id} className='w-full bg-white border-2 shadow-lg flex flex-col gap-1 p-2 rounded'>
-              <img className="w-30 h-40 " src={dataImg}
-              alt='food image'/>
-              <h1 className='text-wrap'>{item.name}</h1>
-              <h1>{item.avgRating}</h1>
-              <h1>{item.costForTwo}</h1>
-              <Link to={`/restMenu/${item.id}`}>moreInfo</Link>
-         </div>
-        );
-      })}
+const RestaurentCard = ({ item }) => {
+  const dataImg = `${Image_Id}${item.cloudinaryImageId}`;
+
+  return (
+    <div className="w-full bg-white border-2 shadow-lg flex flex-col gap-1 p-2 rounded">
+      <img className="w-30 h-20" src={dataImg} alt="food image"/>
+      <h1 className="text-wrap">{item.name}</h1>
+      <h1>Rating {item.avgRating}</h1>
+      <h1>{item.costForTwo}</h1>
     </div>
-);
+  );
 };
+
 export default RestaurentCard;
