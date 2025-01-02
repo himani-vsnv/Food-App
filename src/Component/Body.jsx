@@ -21,7 +21,7 @@ const Body = () => {
     const dataOfRest = jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
     setListRest(dataOfRest)
     setFilterList(dataOfRest)
-    console.log(jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants[0].info.id)
+    console.log(jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants[0].info)
   }
   if(listRest === 0){
     return <ShimmerUi/>
@@ -50,8 +50,8 @@ const Body = () => {
                   <button onClick={handleFiltered} className="p-2 bg-violet-500 rounded">High Rate</button>
               </div>
            </div>
-            <div className="flex flex-wrap gap-4">
-        {listRest.map((rest) => (
+            <div className="flex flex-wrap gap-2 p-2 m-2">
+        {listRest?.map((rest) => (
           <Link key={rest.info.id} to={`/restMenu/${rest.info.id}`}>
             <RestaurentCard item={rest.info} />
           </Link>
