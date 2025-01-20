@@ -13,17 +13,17 @@ const RestMenu = () => {
         const data = await fetch(`${Menu_Api}${restId}`);
         const json = await data.json();
         setRestInfo(json.data)
-        console.log(json.data)
+        console.log(json.data.cards[4]?.groupedCard?.cardGroupMap?.REGULAR.cards[2].card.card.itemCards,'llllllllll')
     }
     if (restInfo===null) return <ShimmerUi/>;
     const item = restInfo?.cards[2]?.card?.card?.info;
     const {name,areaName,avgRating} = item;
     const itemMenu = restInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR.cards[2].card.card.itemCards;
-   
-     console.log("restInfo",restInfo);
-    
-     const filterData = restInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR.cards.filter((rest)=>rest.cards.card.card['@type'] === "type.googleapis.com/swiggy.presentation.food.v2.Restaurant")
-     console.log(filterData,"fffffffffff")
+    console.log(itemMenu,'llllllllll')
+
+
+    // const filterData = restInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR.cards.filter((rest)=>rest.cards.card.card['@type'] === "type.googleapis.com/swiggy.presentation.food.v2.Restaurant")
+  
      return(
         <div>
          <h1>Restaurent Name</h1>

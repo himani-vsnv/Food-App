@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 
 const Body = () => {
     const [listRest, setListRest] = useState([])
+    const [listItem, setListItem] = useState([])
     const [search, setSearch] = useState("")
     const [filterList, setFilterList] = useState([])
     console.log("search",search)
@@ -13,15 +14,16 @@ const Body = () => {
     fetchData()
   },[])
   const fetchData = async () => {
-    const resp =await fetch(Api_Url)
+    const resp = await fetch(Api_Url)
     if (!resp.ok) {
         throw new Error(`Response status: ${resp.status}`);
       }
     const jsonData = await resp.json();
-    const dataOfRest = jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+    const dataOfRest = jsonData?.data?.cards?.[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
     setListRest(dataOfRest)
+    setListItem(jsonData)
     setFilterList(dataOfRest)
-    console.log(jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants[0].info)
+    console.log(jsonData)
   }
   if(listRest === 0){
     return <ShimmerUi/>
